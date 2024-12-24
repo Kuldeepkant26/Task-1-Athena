@@ -1,0 +1,107 @@
+.home {
+    padding-top: 0rem;
+}
+
+/* Home.css */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+}
+
+th,
+td {
+    border: 1px solid black;
+    padding: 10px;
+    text-align: left;
+    vertical-align: middle;
+    /* Ensures vertical alignment */
+}
+
+thead {
+    background-color: rgb(240, 240, 240);
+
+}
+
+tr {
+    display: table-row;
+
+}
+
+tbody tr:nth-child(even) {
+    background-color: rgb(249, 249, 249);
+
+}
+
+.search-box {
+    margin: 1rem auto;
+
+    padding: 1rem;
+    display: flex;
+    width: 50%;
+    gap: 0.3rem;
+
+    border-radius: 50px;
+    background: #f2f2f2;
+    box-shadow: 20px 20px 60px #cecece,
+        -20px -20px 60px #ffffff;
+        position: relative;
+
+
+}
+
+.search-box input {
+
+    outline: none;
+    background-color: rgba(255, 255, 255, 0);
+    width: 90%;
+    padding: 0.4rem;
+
+}
+.search-box .clear-btn{
+
+   position: absolute;
+   right: 21%;
+   font-size: 1.5rem;
+}
+
+.search-box button,
+button {
+    color: white;
+    background-color: black;
+    padding: 0.5rem;
+    border-radius: 20px;
+    display: flex;
+    gap: 0.15rem;
+    align-items: center;
+
+}
+
+.sorting-box {
+    margin:1rem auto;
+    width: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    border-radius: 50px;
+    background: #f2f2f2;
+    box-shadow: 20px 20px 60px #cecece,
+        -20px -20px 60px #ffffff;
+    padding: 1rem;
+}
+
+@media (max-width:600px) {
+    .search-box {
+        width: 100%;
+    }
+
+    .sorting-box {
+        width: 100%;
+    }
+    .search-box .clear-btn{
+
+        position: absolute;
+        right: 25%;
+        font-size: 1.5rem;
+     }
+}

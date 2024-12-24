@@ -26,6 +26,10 @@ module.exports.getAllCandidates = async (req, res) => {
             data: candidates
         })
     } catch (error) {
+        res.status(400).json({
+            success: false,
+            message: "Failed to fetch",
 
+        })
     }
 }

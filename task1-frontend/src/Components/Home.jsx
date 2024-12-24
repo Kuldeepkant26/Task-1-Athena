@@ -14,7 +14,7 @@ function Home() {
     //fetching cadidates from backend
     async function fetchCandidates() {
         try {
-            const res = await axios.get('http://localhost:8080/api/cadidates')
+            const res = await axios.get('https://task-1-athena.vercel.app/api/cadidates')
             // console.log(res.data.data)
             setCandidates(res.data.data)
             console.log(res.data.data)

@@ -5,10 +5,12 @@ import '../Css/Home.css'
 import { toast } from 'react-toastify'
 function Home() {
     const [candidates, setCandidates] = useState(null)
+    const [filteredCandidates, setfilteredCandidates] = useState(null)
     const [condition, setCondition] = useState('')
 
     useEffect(() => {
         fetchCandidates()
+
     }, [])
 
     //fetching cadidates from backend
@@ -17,7 +19,7 @@ function Home() {
             const res = await axios.get('https://task-1-athena.vercel.app/api/cadidates')
             // console.log(res.data.data)
             setCandidates(res.data.data)
-            console.log(res.data.data)
+            setfilteredCandidates(res.data.data)
 
         } catch (error) {
             console.log(error)
@@ -27,7 +29,8 @@ function Home() {
     }
     //Searching login
     function handelSearch() {
-        console.log(condition)
+
+
         const temp = candidates.filter((el) =>
             el.name.toLowerCase().includes(condition.toLowerCase()) ||
             el.skills.join().toLowerCase().includes(condition.toLowerCase())
@@ -36,7 +39,7 @@ function Home() {
         if (!temp.length) {
             toast.warn("No candidates found")
         }
-        setCandidates(temp)
+        setfilteredCandidates(temp)
     }
     //All sorting functions
     function ExperienceSort() {
@@ -48,18 +51,18 @@ function Home() {
         console.log(temp);
 
         // Update the state with the sorted array
-        setCandidates(temp);
+        setfilteredCandidates(temp);
     }
     function reverseSort() {
-        const temp = [...candidates];
+        const temp = [...filteredCandidates];
 
         // Sort the copied array
         temp.reverse()
 
-        console.log(temp);
+
 
         // Update the state with the sorted array
-        setCandidates(temp);
+        setfilteredCandidates(temp);
     }
     function AlphabaticalSort() {
         const temp = [...candidates];
@@ -70,7 +73,7 @@ function Home() {
         console.log(temp);
 
         // Update the state with the sorted array
-        setCandidates(temp);
+        setfilteredCandidates(temp);
     }
     return (
         <div className='home'>
@@ -80,7 +83,7 @@ function Home() {
                     <i className="ri-search-2-line"></i>
                     Search
                 </button>
-                {condition.length ? <i className="clear-btn ri-close-line" onClick={() => { setCondition('') }}></i> : <></>}
+                {condition.length ? <i className="clear-btn ri-close-line cursor-pointer" onClick={() => { setCondition('') }}></i> : <></>}
             </div>
             <div className="sorting-box">
                 <p>Sort by-</p>
@@ -89,7 +92,7 @@ function Home() {
                 <button onClick={AlphabaticalSort}>Alphabatical</button>
                 <button onClick={reverseSort}>Reverse</button>
             </div>
-            {candidates ? <>
+            {filteredCandidates ? <>
                 <table border="1" style={{ width: '100%', borderCollapse: 'collapse' }}>
                     <thead>
                         <tr>
@@ -99,7 +102,7 @@ function Home() {
                         </tr>
                     </thead>
                     <tbody>
-                        {candidates.map((candidate) => (
+                        {filteredCandidates.map((candidate) => (
                             <tr key={candidate.id}>
                                 <td>{candidate.name}</td>
                                 <td>{candidate.skills.join(', ')}</td>
